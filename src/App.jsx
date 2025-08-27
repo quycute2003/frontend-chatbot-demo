@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-
+const CHAT_URL = import.meta.env.VITE_CHAT_API;
 function App() {
     const [messages, setMessages] = useState([
         { sender: "bot", text: "Xin chào 👋, mình là Chatbot demo!" }
@@ -21,7 +21,7 @@ function App() {
         setMessages((prev) => [...prev, { sender: "user", text: userInput }]);
 
         try {
-            const res = await fetch("https://chatbot-qcgh.onrender.com/chat/send", {
+            const res = await fetch(CHAT_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ user_input: userInput })
